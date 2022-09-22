@@ -1,0 +1,18 @@
+{
+    "chain_name": "teritori",
+    "api": ["https://rest.testnet.teritori.n0iz.net"],
+    "rpc": ["https://rpc.testnet.teritori.n0iz.net"],
+    "snapshot_provider": "",
+    "sdk_version": "0.45.4",
+    "coin_type": "118",
+    "min_tx_fee": "5000",
+    "addr_prefix": "tori",
+    "logo": "/logos/teritori.svg",
+    "assets": [{
+        "base": "utori",
+        "symbol": "TORI",
+        "exponent": "6",
+        "coingecko_id": "teritori", 
+        "logo": "/logos/teritori.svg"
+    }]
+}
