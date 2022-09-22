@@ -1,7 +1,7 @@
 {
     "chain_name": "teritori",
-    "api": ["https://rest.testnet.teritori.n0iz.net"],
-    "rpc": ["https://rpc.testnet.teritori.n0iz.net"],
+    "api": ["https://rest.testnet.teritori.com"],
+    "rpc": ["https://rpc.testnet.teritori.com"],
     "snapshot_provider": "",
     "sdk_version": "0.45.4",
     "coin_type": "118",
