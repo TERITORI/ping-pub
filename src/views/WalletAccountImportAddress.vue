@@ -4,14 +4,7 @@
       variant="danger"
       :show="true"
       dismissible
-    >
-      <h4 class="alert-heading">
-        DISCLAIMER:
-      </h4>
-      <div class="alert-body">
-        <span>Ping.pub is maintained by the community, Everyone could add a chain to ping.pub. Some of those blockchains are not fully tested, Use at your own risk.</span>
-      </div>
-    </b-alert>
+    />
     <form-wizard
       ref="wizard"
       color="#7367F0"

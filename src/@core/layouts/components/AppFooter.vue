@@ -1,5 +1,5 @@
 <template>
-  <p class="clearfix mb-0">
+  <p class="clearfix mb-10">
     <span class="float-md-left d-none d-md-block d-md-inline-block mt-25">
       Powered By
       <b-link
@@ -9,7 +9,7 @@
       >Ping.pub</b-link>
     </span>
 
-    <router-link
+    <!-- <router-link
       v-ripple.400="'rgba(113, 102, 240, 0.15)'"
       class="float-md-right"
       to="/coffee"
@@ -24,7 +24,7 @@
           class="text-danger stroke-current"
         />
       </span>
-    </router-link>
+    </router-link> -->
   </p>
 </template>
 
