@@ -240,7 +240,6 @@ export default {
   },
   data() {
     const chains = this.$store.state.chains.config
-    console.log(chains, 'chains')
     const topChains = {}
     const listChains = {}
     Object.keys(chains).forEach(k => {
