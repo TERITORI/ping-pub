@@ -7,22 +7,114 @@
         <h1
           class="text-primary display-4 font-weight-bolder d-none d-md-block"
         >
-          Ping Dashboard<small class="flow-left">Beta</small>
+          Teritori Dashboard<small class="flow-left">Beta</small>
         </h1>
       </div>
     </b-link>
 
     <p class="mb-1">
-      Ping Dashboard is not just an explorer but also a wallet and more ... 🛠
+      Teritori Dashboard is not just an explorer but also a wallet and more ... 🛠
     </p>
     <h2 class="mb-3">
       Cosmos Ecosystem Blockchains 🚀
     </h2>
-
     <div>
       <b-row class="match-height">
         <b-col
-          v-for="(data,index) in chains"
+          v-for="(data,index) in topChains"
+          :key="index"
+          v-observe-visibility="(visible) => visibilityChanged(visible, data)"
+          sm="6"
+          md="4"
+          lg="4"
+          xl="3"
+        >
+          <router-link :to="data.chain_name">
+            <b-card
+              v-if="data"
+              class="earnings-card text-left"
+            >
+              <div>
+                <b-card-title class="mb-1 d-flex justify-content-between">
+                  <span class="text-uppercase">{{ data.chain_name }} <small class="font-small-2">{{ data.sdk_version }}</small></span>
+                  <b-dropdown
+                    class="ml-1"
+                    variant="link"
+                    no-caret
+                    toggle-class="p-0"
+                    right
+                  >
+                    <template #button-content>
+                      <feather-icon
+                        icon="MoreVerticalIcon"
+                        size="18"
+                        class="cursor-pointer"
+                      />
+                    </template>
+                    <b-dropdown-item :to="`/${data.chain_name}/`">
+                      Summary
+                    </b-dropdown-item>
+                    <b-dropdown-item :to="`/${data.chain_name}/staking`">
+                      Staking
+                    </b-dropdown-item>
+                    <b-dropdown-item :to="`/${data.chain_name}/gov`">
+                      Governance
+                    </b-dropdown-item>
+                    <b-dropdown-item :to="`/${data.chain_name}/uptime`">
+                      Uptime
+                    </b-dropdown-item>
+                    <b-dropdown-item :to="`/${data.chain_name}/statesync`">
+                      State Sync
+                    </b-dropdown-item>
+                  </b-dropdown>
+                </b-card-title>
+
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <div class="font-small-2">
+                      Height
+                    </div>
+                    <h5 class="mb-1">
+                      {{ data.height || '0' }}
+                    </h5>
+                  </div>
+                  <div>
+                    <b-avatar
+                      :src="data.logo"
+                      class="badge-minimal"
+                      variant="light-primary"
+                      rounded
+                      size="md"
+                      badge
+                      :badge-variant="data.variant"
+                    />
+                  </div>
+                </div>
+                <b-card-text class="text-muted font-small-2">
+                  <span> Updated on </span><span class="font-weight-bolder">{{ data.time || '...' }}</span>
+                </b-card-text>
+              </div>
+            </b-card>
+          </router-link>
+        </b-col>
+
+        <!-- no result found -->
+        <b-col
+          v-show="!chains"
+          cols="12"
+          class="text-center"
+        >
+          <h4 class="mt-4">
+            No blockchain found!!
+          </h4>
+        </b-col>
+        <!--/ no result found -->
+      </b-row>
+    </div>
+    <div>
+      <b-row class="match-height">
+        <b-col
+          v-for="(data,index) in listChains"
           :key="index"
           v-observe-visibility="(visible) => visibilityChanged(visible, data)"
           sm="6"
@@ -148,7 +240,19 @@ export default {
   },
   data() {
     const chains = this.$store.state.chains.config
+    const topChains = {}
+    const listChains = {}
+    Object.keys(chains).forEach(k => {
+      const item = chains[k]
+      if (k.indexOf('teritori') !== -1) {
+        topChains[k] = item
+      } else {
+        listChains[k] = item
+      }
+    })
     return {
+      topChains,
+      listChains,
       chains,
       downImg: require('@/assets/images/pages/under-maintenance.svg'),
     }
